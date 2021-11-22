@@ -1,4 +1,4 @@
-#test README.MD
+JC_README.MD
 
 preconditions
 
@@ -6,41 +6,74 @@ password hashing application downloaded from public s3 bucket (wget --no-check-c
 https://s3.amazonaws.com/qa-broken-hashserve/broken-hashserve.tgz)
 PORT set to 8088
 
-test cases
+test cases 
+
+(POST/hash)
 
 Verify hashing application answers on PORT 8088 (echo $PORT) - pass
+
 Verify POST to /hash endpoint returns job identifier immediately - fail
+
 Verify POST to /hash endpoint time to compute password hash = 5 seconds (5000 ms) - pass
+
 Verify POST to /hash endpoint with environment variable 8088 returns 201 - fail
+
 Verify POST to /hash endpoint with environment variable 8089 returns 'connection refused' - pass 
+
 Verify POST to /hash endpoint supports special characters - pass
+
 Verify POST to /hash endpoint supports integers - pass
+
 Verify POST to /hash endpoint supports int + special characters - pass
+
 Verify POST to /hash endpoint supports spaces - pass
+
 Verify Min and Max input in POST request - fail 
+
 Verify behavior with empty request - pass
 
 
 
+(GET/hash)
+
 Verify GET to /hash with valid job identifier returns 200 - pass
+
 Verify GET to /hash with valid job identifier from corresponding POST response returns base64 encoded password hash - pass
+
 Verify GET to /hash with invalid job ID returns 404 not found status code - fail 
+
 Verify base64 password hash is encrypted - pass
 
+
+
+(GET/stats)
+
 Verify GET /stats _TotalRequests_ value is acurate from when the server was started - pass
+
 Verify GET /stats _AverageTime_ value is in milliseconds - fail
+
 Verify GET /stats returns a JSON schema - pass
+
 Verify GET /stats returns a 404 not found when data is passed - pass 
 
 
-Verify API supports multiple connections simultaneously - fail
+
+(POST/shutdown)
+
 Verify application gracefully handles shutdown when in-flight requests are being processed - fail
+
 Verify API requests are rejected when shutdown is pending - pass
+
 Verfify endpoints rejects new responses when AUT is shutdown - pass
+
 Verify POST /shutdown returns a 200 with empty response - pass
+
+Verify API supports multiple connections simultaneously - fail
+
 
 
 Feature defects
+
 
 **Defect#1**
 
