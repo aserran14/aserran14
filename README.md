@@ -1,6 +1,8 @@
-JC_README.MD
+JC_QA_Assignment
 
-preconditions
+Alex Serran
+
+Preconditions
 
 password hashing application downloaded from public s3 bucket (wget --no-check-certificate --no-proxy
 https://s3.amazonaws.com/qa-broken-hashserve/broken-hashserve.tgz)
